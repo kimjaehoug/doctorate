@@ -6,11 +6,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 5001;
 
 // 미들웨어
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['http://localhost:3001', 'http://127.0.0.1:3001'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -81,6 +81,7 @@ async function initializeDatabase() {
     console.log('데이터베이스 초기화 완료');
   } catch (error) {
     console.error('데이터베이스 초기화 오류:', error);
+    console.log('MySQL 연결 없이 서버가 실행됩니다. 일부 기능이 제한될 수 있습니다.');
   }
 }
 
