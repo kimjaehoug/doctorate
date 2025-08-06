@@ -38,7 +38,7 @@ const Chat = ({ user, onLogout }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "안녕하세요! 저는 의사PT입니다. 환자에 관한 질문이나 지식이 필요하시면 언제든 말씀해 주세요.",
+      text: "안녕하세요! 저는 의사PT입니다. 환자에 관한 질문이나 지식이 필요하시면 언제든 말씀해 주세요. 테스트",
       sender: 'assistant',
       timestamp: new Date()
     }
