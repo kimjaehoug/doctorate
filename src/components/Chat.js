@@ -31,10 +31,11 @@ import {
   Logout as LogoutIcon,
   MoreVert as MoreVertIcon,
   Edit as EditIcon,
-  Delete as DeleteIcon
+  Delete as DeleteIcon,
+  LocalHospital as HospitalIcon
 } from '@mui/icons-material';
 
-const Chat = ({ user, onLogout }) => {
+const Chat = ({ user, onLogout, onViewChange }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -470,6 +471,16 @@ const Chat = ({ user, onLogout }) => {
               의사PT
             </Typography>
           </Box>
+          
+          {/* 네비게이션 버튼 */}
+          <Button
+            color="inherit"
+            startIcon={<HospitalIcon />}
+            onClick={() => onViewChange('dashboard')}
+            sx={{ ml: 'auto', mr: 2 }}
+          >
+            환자 대시보드
+          </Button>
         </Toolbar>
         <Divider />
         

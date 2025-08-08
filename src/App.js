@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import Auth from './components/Auth';
 import Chat from './components/Chat';
+import PatientDashboard from './components/PatientDashboard';
 import './App.css';
 
 const theme = createTheme({
@@ -19,6 +20,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard' 또는 'chat'
 
   // 토큰이 있으면 자동 로그인
   useEffect(() => {
@@ -89,11 +91,28 @@ function App() {
     setIsAuthenticated(false);
   };
 
+  // 뷰 변경 처리
+  const handleViewChange = (view) => {
+    setCurrentView(view);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {isAuthenticated ? (
-        <Chat user={user} onLogout={handleLogout} />
+        currentView === 'dashboard' ? (
+          <PatientDashboard 
+            user={user} 
+            onLogout={handleLogout}
+            onViewChange={handleViewChange}
+          />
+        ) : (
+          <Chat 
+            user={user} 
+            onLogout={handleLogout}
+            onViewChange={handleViewChange}
+          />
+        )
       ) : (
         <Auth onLogin={handleLogin} onRegister={handleRegister} />
       )}
